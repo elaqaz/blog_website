@@ -1,2 +1,6 @@
 class User < ApplicationRecord
-end
+    has_secure_password
+    has_many :blogs
+    has_many :favorites
+  end
+  

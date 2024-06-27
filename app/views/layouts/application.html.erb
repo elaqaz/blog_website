@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BlogWebsite</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>BlogWebsite</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+  <header>
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'About', about_path %>
+      <%= link_to 'Contact', contact_path %>
+      <%= link_to 'Terms', terms_path %>
+      <%= link_to 'Privacy', privacy_path %>
+      <% if current_user %>
+        <%= link_to 'Profile', user_path(current_user) %>
+        <%= link_to 'Log out', session_path(current_user), method: :delete %>
+      <% else %>
+        <%= link_to 'Log in', new_session_path %>
+        <%= link_to 'Sign up', new_user_path %>
+      <% end %>
+    </nav>
+  </header>
+  
+  <main>
     <%= yield %>
-  </body>
+  </main>
+</body>
 </html>
+
