@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand">
+      <img src="/assets/logo.png" alt="Our Blog Logo" class="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'News', news_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.linkedin.com/in/elzbieta-szymichowska-31309b289/" target="_blank">LinkedIn</a>
+        </li>
+
+        <!-- Dropdown for Account -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Account
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+            <li><%= link_to 'Profile', profile_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Settings', settings_path, class: 'dropdown-item' %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <% if session[:user_id] %>
+                <%= link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item', data: { turbo_method: :delete } %>
+              <% else %>
+                <%= link_to 'Login', login_path, class: 'dropdown-item' %>
+                <%= link_to 'Sign Up', signup_path, class: 'dropdown-item' %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Dropdown for Users -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Users
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+            <li><%= link_to 'User List', users_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'User Settings', settings_path, class: 'dropdown-item' %></li> 
+          </ul>
+        </li>
+
+        <!-- Dropdown for Terms/Policy -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="termsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Legal
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="termsDropdown">
+            <li><a href="/terms" class="dropdown-item">Terms of Service</a></li>
+            <li><a href="/privacy" class="dropdown-item">Privacy Policy</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
